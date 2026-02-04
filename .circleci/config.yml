@@ -1,20 +1,21 @@
 version: 2.1
 
-parameters:
-  username:
-    type: string
-    default: "Srilaya"
-
 jobs:
-  Hello-CircleCI:
+  java-build:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/openjdk:17.0
     steps:
+      - checkout
+
       - run:
-          name: Print USERNAME parameter
-          command: echo "Username is Srilaya"
+          name: Compile Java program
+          command: javac Hello.java
+
+      - run:
+          name: Run Java program
+          command: java Hello
 
 workflows:
-  hello-workflow:
+  java-workflow:
     jobs:
-      - Hello-CircleCI
+      - java-build
