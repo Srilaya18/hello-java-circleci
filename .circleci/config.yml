@@ -1,28 +1,3 @@
-version: 2.1
-
-# ---------- JOB DEFINITIONS ----------
-jobs:
-  Job-A:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run:
-          name: Run Job-A
-          command: echo "Job-A executed"
-
-  Job-B:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run:
-          name: Run Job-B
-          command: echo "Job-B executed"
-
-# ---------- WORKFLOW (JOB CHAINING) ----------
-workflows:
-  job-chaining-workflow:
-    jobs:
-      - Job-A
-      - Job-B:
-          requires:
-            - Job-A
+- run:
+    name: Verify clean workspace
+    command: ls
