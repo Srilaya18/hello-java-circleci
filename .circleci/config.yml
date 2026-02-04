@@ -23,6 +23,10 @@ jobs:
           name: Display file content
           command: cat demo.txt
 
+      - run:
+          name: Print USERNAME parameter
+          command: echo "Username is $USERNAME"
+
 workflows:
   hello-workflow:
     jobs:
