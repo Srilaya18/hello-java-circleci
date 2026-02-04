@@ -1,25 +1,21 @@
 version: 2.1
 
 jobs:
-  java-build:
+  simple-pipeline:
     docker:
       - image: cimg/openjdk:17.0
     steps:
       - checkout
 
       - run:
-          name: Compile Java program
-          command: javac Hello.java
+          name: Build stage
+          command: echo "Building the application"
 
       - run:
-          name: Run Java program
-          command: java Hello
-
-      - store_artifacts:
-          path: Hello.class
-
+          name: Test stage
+          command: echo "Running tests"
 
 workflows:
-  java-workflow:
+  simple-workflow:
     jobs:
-      - java-build
+      - simple-pipeline
