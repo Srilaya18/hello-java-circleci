@@ -1,31 +1,18 @@
 version: 2.1
 
+parameters:
+  username:
+    type: string
+    default: "Srilaya"
+
 jobs:
   Hello-CircleCI:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
-
-      - run:
-          name: Show source code files
-          command: ls
-
-      - run:
-          name: Print Hello Message
-          command: echo "Hello CircleCI"
-
-      - run:
-          name: Create text file
-          command: echo "This is CircleCI workspace" > demo.txt
-
-      - run:
-          name: Display file content
-          command: cat demo.txt
-
       - run:
           name: Print USERNAME parameter
-          command: echo "Username is $USERNAME"
+          command: echo "Username is << pipeline.parameters.username >>"
 
 workflows:
   hello-workflow:
