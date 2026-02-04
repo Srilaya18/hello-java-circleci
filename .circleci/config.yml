@@ -6,12 +6,22 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+
       - run:
           name: Show source code files
           command: ls
+
       - run:
           name: Print Hello Message
           command: echo "Hello CircleCI"
+
+      - run:
+          name: Create text file
+          command: echo "This is CircleCI workspace" > demo.txt
+
+      - run:
+          name: Display file content
+          command: cat demo.txt
 
 workflows:
   hello-workflow:
