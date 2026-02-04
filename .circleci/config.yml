@@ -1,21 +1,27 @@
 version: 2.1
 
 jobs:
-  simple-pipeline:
+  post-build-demo:
     docker:
-      - image: cimg/openjdk:17.0
+      - image: cimg/base:stable
     steps:
       - checkout
 
       - run:
-          name: Build stage
-          command: echo "Building the application"
+          name: Build step
+          command: echo "Build in progress"
 
       - run:
-          name: Test stage
-          command: echo "Running tests"
+          name: Success message
+          command: echo "Build completed successfully"
+          when: on_success
+
+      - run:
+          name: Failure message
+          command: echo "Build failed"
+          when: on_fail
 
 workflows:
-  simple-workflow:
+  post-build-workflow:
     jobs:
-      - simple-pipeline
+      - post-build-demo
