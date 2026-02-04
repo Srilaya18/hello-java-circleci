@@ -12,7 +12,7 @@ jobs:
     steps:
       - run:
           name: Print USERNAME parameter
-          command: echo "Username is << pipeline.parameters.username >>"
+          command: echo "Username is Srilaya"
 
 workflows:
   hello-workflow:
