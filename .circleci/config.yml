@@ -1,27 +1,28 @@
 version: 2.1
 
+# ---------- JOB DEFINITIONS ----------
 jobs:
-  post-build-demo:
+  Job-A:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
-
       - run:
-          name: Build step
-          command: echo "Build in progress"
+          name: Run Job-A
+          command: echo "Job-A executed"
 
+  Job-B:
+    docker:
+      - image: cimg/base:stable
+    steps:
       - run:
-          name: Success message
-          command: echo "Build completed successfully"
-          when: on_success
+          name: Run Job-B
+          command: echo "Job-B executed"
 
-      - run:
-          name: Failure message
-          command: echo "Build failed"
-          when: on_fail
-
+# ---------- WORKFLOW (JOB CHAINING) ----------
 workflows:
-  post-build-workflow:
+  job-chaining-workflow:
     jobs:
-      - post-build-demo
+      - Job-A
+      - Job-B:
+          requires:
+            - Job-A
